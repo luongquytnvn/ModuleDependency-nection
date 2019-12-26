@@ -1,0 +1,11 @@
+<a routerLink="/customers">Back to home</a>
+<h3>Create Customer</h3>
+<form (ngSubmit)="onsubmit()" [formGroup]="createForm">
+  <p>First name</p>
+  <input type="text" placeholder="first name" formControlName="firstName">
+  <p>Last tname</p>
+  <input type="text" placeholder="last name" formControlName="lastName">
+  <br>
+  <br>
+  <button>Submit</button>
+</form>

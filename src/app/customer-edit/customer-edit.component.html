@@ -1,0 +1,12 @@
+<a routerLink="/customers">Back to home</a>
+<h3>Edit Customer</h3>
+<form (ngSubmit)="onsubmit()" [formGroup]="editForm">
+  <input type="hidden" formControlName="id">
+  <p>First name</p>
+  <input type="text" placeholder="first name" formControlName="firstName">
+  <p>Last tname</p>
+  <input type="text" placeholder="last name" formControlName="lastName">
+  <br>
+  <br>
+  <button>Submit</button>
+</form>

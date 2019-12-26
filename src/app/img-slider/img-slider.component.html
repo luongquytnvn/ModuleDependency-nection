@@ -1,0 +1,13 @@
+<div *ngFor="let a of listImg">
+  <div *ngIf="a.show">
+    <div>
+      <img src="{{a.src}}" alt="">
+    </div>
+    <div>
+      <button class="button" (click)="previos(a.src)">Previos</button>
+    </div>
+    <div>
+      <button class="button" (click)="next(a.src)">Next</button>
+    </div>
+  </div>
+</div>

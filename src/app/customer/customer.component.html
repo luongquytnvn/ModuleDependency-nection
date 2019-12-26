@@ -1,0 +1,11 @@
+<a routerLink="/customers/create">Create new customer</a>
+<div *ngFor="let customer of listCustomer;index as i">
+  <p>ID</p>
+  {{customer.id}}
+  <p>First name</p>
+  {{customer.firstName}}
+  <p>Last name</p>
+  {{customer.lastName}}
+  <button [routerLink]="['/customers/edit/',customer.id]">Edit</button>
+  <button (click)="deleteCustomer(i)">Delete</button>
+</div>
