@@ -16,11 +16,4 @@ export class CustomerComponent implements OnInit {
   ngOnInit() {
     this.customerService.getCustomers().subscribe(next => (this.listCustomer = next), error => (this.listCustomer = []));
   }
-
-  deleteCustomer(i: number) {
-    const customer = this.listCustomer[i];
-    this.customerService.deleteCustomer(customer.id).subscribe(() => {
-      this.listCustomer.splice(i, 1);
-    });
-  }
 }

@@ -5,13 +5,13 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Customer} from '../customer';
 
 @Component({
-  selector: 'app-customer-edit',
-  templateUrl: './customer-edit.component.html',
-  styleUrls: ['./customer-edit.component.css']
+  selector: 'app-customer-delete',
+  templateUrl: './customer-delete.component.html',
+  styleUrls: ['./customer-delete.component.css']
 })
-export class CustomerEditComponent implements OnInit {
-  editForm: FormGroup;
+export class CustomerDeleteComponent implements OnInit {
   customer: Customer;
+  deleteForm: FormGroup;
 
   constructor(private fb: FormBuilder,
               private customerService: CustomerService,
@@ -21,7 +21,7 @@ export class CustomerEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.editForm = this.fb.group({
+    this.deleteForm = this.fb.group({
       id: [''],
       firstName: [''],
       lastName: ['']
@@ -29,7 +29,7 @@ export class CustomerEditComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.customerService.getCustomerById(id).subscribe(next => {
         this.customer = next;
-        this.editForm.patchValue(this.customer);
+        this.deleteForm.patchValue(this.customer);
       },
       error => {
         console.log(error);
@@ -39,10 +39,14 @@ export class CustomerEditComponent implements OnInit {
   }
 
   onsubmit() {
-    const {value} = this.editForm;
-    console.log(value);
-    this.customerService.editCustomer(value).subscribe(next => {
-      confirm('sua thanh cong');
-    });
+    const s = confirm('Are you sure!');
+    if (s) {
+      const {value} = this.deleteForm;
+      console.log(value);
+      this.customerService.deleteCustomer(value.id).subscribe(next => {
+        alert('Xoa thanh cong');
+        this.router.navigate(['']);
+      });
+    }
   }
 }
